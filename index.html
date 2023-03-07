@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" src="style.css" />
+    <style>
+        .wrapper {
+  max-height: 120px;
+  border: 1px solid #ddd;
+  display: flex;
+  overflow-x: auto;
+}
+
+.wrapper::-webkit-scrollbar {
+  width: 0;
+}
+
+.wrapper .item{
+    min-width: 110px;
+    min-height: 110px;
+    line-height: 110px;
+    text-align: center;
+    background-color: #ddd;
+    margin-right: 2px;
+}
+
+    </style>
+    <title>Slider</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="item">box1</div>
+        <div class="item">box2</div>
+        <div class="item">box3</div>
+        <div class="item">box4</div>
+        <div class="item">box5</div>
+        <div class="item">box6</div>
+        <div class="item">box7</div>
+    </div>
+</body>
+</html>
