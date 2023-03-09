@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .wrapper {
+        display: flex;
+        gap: 100px;
+        overflow: scroll;
+      }
+
+      .wrapper::-webkit-scrollbar {
+        width: 0px;
+      }
+
+      .wrapper .item {
+        min-width: 110px;
+        min-height: 110px;
+        line-height: 110px;
+        text-align: center;
+        background-color: #ddd;
+        margin-right: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="item">box 1</div>
+      <div class="item">box 2</div>
+      <div class="item">box 3</div>
+      <div class="item">box 4</div>
+      <div class="item">box 5</div>
+      <div class="item">box 6</div>
+      <div class="item">box 7</div>
+      <div class="item">box 8</div>
+      <div class="item">box 9</div>
+    </div>
+  </body>
+  <script>
+    let pointerFrom = 0;
+    let elementFrom = 0;
+
+    const scrollable = document.querySelector(".wrapper");
+
+    const onDrag = (event) => {
+      // Ensure we only do this for pointers that don't have native
+      // drag-scrolling behavior and when the pointer is down.
+      if (event.pointerType == "mouse") {
+        scrollable.scrollLeft = elementFrom - event.clientX + pointerFrom;
+      }
+    };
+
+    scrollable.addEventListener("pointerdown", (event) => {
+      // Ensure we only do this for pointers that don't have native
+      // drag-scrolling behavior.
+      if (event.pointerType == "mouse") {
+        pointerDown = true;
+        // Set the position where the mouse is starting to drag from.
+        pointerFrom = event.clientX;
+        // Set the position of the element is scrolled from.
+        elementFrom = scrollable.scrollLeft;
+
+        // React on pointer move.
+        document.addEventListener("pointermove", onDrag);
+      }
+    });
+
+    // Stop reacting on pointer move when pointer is no longer clicked.
+    document.addEventListener("pointerup", (event) => {
+      // Ensure we only do this for pointers that don't have native
+      // drag-scrolling behavior.
+      if (event.pointerType == "mouse") {
+        document.removeEventListener("pointermove", onDrag);
+      }
+    });
+  </script>
+</html>
